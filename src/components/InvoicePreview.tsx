@@ -32,10 +32,10 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
 
   return (
     <div className="bg-white dark:bg-surface-1 rounded-xl shadow-lg border border-sand dark:border-surface-2 overflow-hidden print:shadow-none print:border-none print:rounded-none transition-colors">
-      <div className="p-6 sm:p-14 min-h-[1056px] print:min-h-0 text-espresso dark:text-alabaster print:text-black bg-oatmeal/30 dark:bg-cocoa/30 print:bg-white transition-colors">
+      <div className="p-6 sm:p-14 min-h-[1056px] print:min-h-0 print:p-0 text-espresso dark:text-alabaster print:text-black bg-oatmeal/30 dark:bg-cocoa/30 print:bg-white transition-colors">
         
         {/* Header Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-12">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-12 print:mb-6">
           <div className="space-y-1">
             <h1 className="text-4xl font-bold tracking-tight text-espresso dark:text-alabaster print:text-black mb-2">INVOICE</h1>
             <p className="text-espresso/60 dark:text-alabaster/60 print:text-gray-500 font-medium">#{data.invoiceNumber || 'INV-0001'}</p>
@@ -52,7 +52,7 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
         </div>
 
         {/* Dates and Client Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 print:mb-6">
           <div className="space-y-4">
             <div className="bg-white dark:bg-surface-2 print:bg-gray-50 rounded-lg p-4 border border-sand dark:border-surface-2 print:border-gray-100 transition-colors">
               <h3 className="text-xs font-bold text-espresso/50 dark:text-alabaster/50 print:text-gray-400 uppercase tracking-wider mb-2">Bill To</h3>
@@ -107,25 +107,25 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
         )}
 
         {/* Line Items Table */}
-        <div className="mb-8 overflow-x-auto">
+        <div className="mb-8 print:mb-4 overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[500px]">
             <thead>
               <tr className="border-b-2 border-espresso dark:border-alabaster print:border-black text-sm transition-colors">
-                <th className="pb-3 font-bold text-espresso dark:text-alabaster print:text-black w-1/2">Description</th>
-                <th className="pb-3 font-bold text-espresso dark:text-alabaster print:text-black text-center w-1/6">Qty</th>
-                <th className="pb-3 font-bold text-espresso dark:text-alabaster print:text-black text-right w-1/6">Rate</th>
-                <th className="pb-3 font-bold text-espresso dark:text-alabaster print:text-black text-right w-1/6">Amount</th>
+                <th className="pb-3 print:pb-2 font-bold text-espresso dark:text-alabaster print:text-black w-1/2">Description</th>
+                <th className="pb-3 print:pb-2 font-bold text-espresso dark:text-alabaster print:text-black text-center w-1/6">Qty</th>
+                <th className="pb-3 print:pb-2 font-bold text-espresso dark:text-alabaster print:text-black text-right w-1/6">Rate</th>
+                <th className="pb-3 print:pb-2 font-bold text-espresso dark:text-alabaster print:text-black text-right w-1/6">Amount</th>
               </tr>
             </thead>
             <tbody className="text-sm">
               {data.items.map((item, index) => (
                 <tr key={item.id} className="border-b border-sand dark:border-surface-2 print:border-gray-200 last:border-b-0 print:break-inside-avoid transition-colors">
-                  <td className="py-4 text-espresso/90 dark:text-alabaster/90 print:text-gray-800 break-words pr-4">
+                  <td className="py-4 print:py-2 text-espresso/90 dark:text-alabaster/90 print:text-gray-800 break-words pr-4">
                     {item.description || <span className="text-espresso/30 dark:text-alabaster/30 print:text-gray-300 italic">Item description...</span>}
                   </td>
-                  <td className="py-4 text-espresso/70 dark:text-alabaster/70 print:text-gray-600 text-center">{item.quantity}</td>
-                  <td className="py-4 text-espresso/70 dark:text-alabaster/70 print:text-gray-600 text-right">{formatCurrency(item.rate)}</td>
-                  <td className="py-4 text-espresso dark:text-alabaster print:text-black font-medium text-right">
+                  <td className="py-4 print:py-2 text-espresso/70 dark:text-alabaster/70 print:text-gray-600 text-center">{item.quantity}</td>
+                  <td className="py-4 print:py-2 text-espresso/70 dark:text-alabaster/70 print:text-gray-600 text-right">{formatCurrency(item.rate)}</td>
+                  <td className="py-4 print:py-2 text-espresso dark:text-alabaster print:text-black font-medium text-right">
                     {formatCurrency(item.quantity * item.rate)}
                   </td>
                 </tr>
@@ -151,7 +151,7 @@ export default function InvoicePreview({ data }: InvoicePreviewProps) {
             )}
           </div>
           
-          <div className="w-full sm:w-80 space-y-3 order-1 sm:order-2 bg-white dark:bg-surface-2 print:bg-gray-50 p-6 rounded-lg border border-sand dark:border-surface-2 print:border-gray-100 transition-colors">
+          <div className="w-full sm:w-80 space-y-3 order-1 sm:order-2 bg-white dark:bg-surface-2 print:bg-gray-50 p-6 print:p-4 rounded-lg border border-sand dark:border-surface-2 print:border-gray-100 transition-colors">
             <div className="flex justify-between text-sm">
               <span className="font-medium text-espresso/80 dark:text-alabaster/80 print:text-gray-600">Subtotal</span>
               <span className="font-medium text-espresso dark:text-alabaster print:text-black">{formatCurrency(subtotal)}</span>

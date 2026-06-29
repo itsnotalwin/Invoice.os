@@ -13,11 +13,23 @@
 
 @media print {
   @page {
-    margin: 0;
+    margin: 1cm;
+    size: portrait;
   }
   
-  body {
-    margin: 1cm;
+  html, body {
+    height: 100% !important;
+    overflow: hidden !important;
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #root, main {
+    height: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   * {
